@@ -1,0 +1,40 @@
+
+
+<ng-template #content let-modal>
+    <div class="div modal-body pt-5 p-3">
+        <div class="d-flex justify-content-center align-items-center">
+            <!--aca va a ir la imagen-->
+        </div>
+        <h2 class="mb-4 titleModal">Empleado eliminado</h2>
+        <div class="mt-4 warn d-flex align-items-center justify-content-center w-100">
+            <p class="w-75 text-center">El empleado seleccionado ha sido eliminado.</p>
+        </div>
+        <div class="modal-footer">
+            <button type="button" class="btn-square-black mx-auto" (click)="close()">
+                Continuar
+    
+            </button>
+        </div>
+    </div>
+</ng-template>
+
+<div class="div modal-body pt-5 p-3">
+    <div class="d-flex justify-content-center align-items-center">
+        <img src="../../../../../assets/icons/circleDelete.svg" alt="" srcset="">
+
+    </div>
+    <h2 class="mb-4 titleModal">¡Está por eliminar un empleado!</h2>
+    <div class="mt-4 warn d-flex align-items-center justify-content-center w-100">
+        <p class="w-75 text-center">¿Estas seguro que quieres eliminar un empleado?</p>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn-square-black mx-auto" (click)="open(content)">
+            Sí, eliminar
+
+        </button>
+        <button type="button" class="btn-square-black mx-auto" (click)="close()">
+            No, prefiero dejarlo
+
+        </button>
+    </div>
+</div>

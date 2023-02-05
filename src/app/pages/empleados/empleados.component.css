@@ -1,0 +1,16 @@
+.edit {
+    cursor: pointer;
+}
+.delete {
+    cursor: pointer;
+}
+
+table thead tr th {
+    text-align: center;
+}
+.not-found{
+    text-align: center;
+}
+.dataEmpleado{
+    padding-left: 25px;
+}

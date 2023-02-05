@@ -1,0 +1,29 @@
+<div class="card bg-dark-text-white">
+<div class="card-header">Crear</div>
+<div class="card-body">
+
+    <form [formGroup]="empleadoForm">
+        <div class="form-group column">
+            <div class="col-sm-6">
+                <input type="text" name="" id="" class="form-control" placeholder="Nombre" formControlName="nombre">
+            </div>
+            <div class="col-sm-6">
+                <input type="text" name="" id="" class="form-control" placeholder="Apellido" formControlName="apellido">
+            </div>
+            <div class="col-sm-6">
+                <input type="number" name="" id="" class="form-control" placeholder="Edad" formControlName="edad">
+            </div>
+            <div class="col-sm-6">
+                <input type="text" name="" id="" class="form-control" placeholder="Puesto" formControlName="puesto">
+            </div>
+        </div>
+        <div class="form-group row">
+            <div class="col-sm-6">
+                <button class="btn btn-primary" role="button" *ngIf="urlUse[1] == 'create'" (click)="create()">Crear</button>
+                <button class="btn btn-primary" role="button" *ngIf="urlUse[1] == 'edit'" (click)="edit()">Editar</button>
+            </div>
+        </div>
+    </form>
+
+</div>
+</div>

@@ -1,0 +1,51 @@
+.modal-content{
+    border-radius: 10px;
+    
+}
+.modal-content .modal-header{
+    border: none !important;
+    padding-bottom: 0 !important;
+}
+
+.modal-content button{
+    padding: 1rem 2rem !important;
+}
+
+.modal-body{
+    text-align: center;
+    font-family: 'Gotham Bold', 'Helvetica Neue', sans-serif;
+    padding-bottom: 2rem;
+    
+}
+.modal-body p{
+ font-size: 1.4rem;       
+}
+
+.modal-footer{
+    border: none !important;
+    padding-bottom: 4rem;
+}
+.titleModal{
+    font-family: 'Gotham Bold', 'Helvetica Neue', sans-serif;
+
+}
+
+.warn{
+    font-family: 'Gotham Book', 'Helvetica Neue', sans-serif;
+    font-size: 1.4rem;
+}
+
+.modal-footer button{
+    display: inline-flex;
+    font-size: 12px;
+    margin: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+html{
+    overflow: hidden;
+    font-family: 'Gotham Book', 'Helvetica Neue', sans-serif;
+    font-size: 14px;
+    background: rgb(178, 177, 177);
+}
