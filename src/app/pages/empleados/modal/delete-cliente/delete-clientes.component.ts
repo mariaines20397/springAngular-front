@@ -1,20 +1,20 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { EmpleadosService } from '../../service/empleados.service';
+import { ClientesService } from '../../service/clientes.service';
 
 @Component({
-  selector: 'app-delete-empleado',
-  templateUrl: './delete-empleado.component.html',
-  styleUrls: ['./delete-empleado.component.css']
+  selector: 'app-delete-clientes',
+  templateUrl: './delete-clientes.component.html',
+  styleUrls: ['./delete-clientes.component.css']
 })
-export class DeleteEmpleadoComponent implements OnInit {
+export class DeleteClienteComponent implements OnInit {
   closeResult=''
   urlUse:string[] = []
   constructor(
     private router:Router,
     private modalService:NgbModal,
-	private empleadoService:EmpleadosService
+	private clienteService:ClientesService
   ){ }
   ngOnInit(){
     this.urlUse=this.router.url.split('/');
@@ -31,7 +31,7 @@ export class DeleteEmpleadoComponent implements OnInit {
 	);
 	const id=parseInt(this.urlUse[1])
 
-    this.empleadoService.deleteEmpleado(id).subscribe(
+    this.clienteService.deleteCliente(id).subscribe(
       res=> this.router.navigate(['/'])
     )
 this.modalService.dismissAll();

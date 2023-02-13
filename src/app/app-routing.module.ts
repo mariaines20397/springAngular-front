@@ -1,15 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { EmpleadoComponent } from './pages/empleados/empleado/empleado.component';
-import { EmpleadosComponent } from './pages/empleados/empleados.component';
-import { DeleteEmpleadoComponent } from './pages/empleados/modal/delete-empleado/delete-empleado.component';
+import { AuthGuard } from './core/guards/auth-guard.guard';
+import { ClienteComponent } from './pages/empleados/cliente/cliente.component';
+import { ClientesComponent } from './pages/empleados/clientes.component';
+import { DeleteClienteComponent } from './pages/empleados/modal/delete-cliente/delete-clientes.component';
 
 const routes:Routes=[
   // {path:'**', redirectTo:'/', pathMatch:'full'},
-  {path:'', component:EmpleadosComponent},
-  {path:'create',component:EmpleadoComponent},
-  {path:'edit/:id' , component:EmpleadoComponent},
-  {path:':id' , component:EmpleadosComponent},
+  {path:'', 
+  // canActivate:[AuthGuard],
+  component:ClientesComponent
+},
+  {path:'create',component:ClienteComponent},
+  {path:'edit/:id' , component:ClienteComponent},
+  {path:':id' , component:ClientesComponent},
 ]
 
 @NgModule({

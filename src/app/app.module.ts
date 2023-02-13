@@ -1,24 +1,33 @@
-import { NgModule } from '@angular/core';
+import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HttpClientModule } from "@angular/common/http";
-import { EmpleadosComponent } from './pages/empleados/empleados.component';
-import { EmpleadoComponent } from './pages/empleados/empleado/empleado.component';
+import { ClientesComponent } from './pages/empleados/clientes.component';
+import { ClienteComponent } from './pages/empleados/cliente/cliente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CreateEmpleadoComponent } from './pages/empleados/modal/create-empleado/create-empleado.component'
+import { CreateClienteComponent } from './pages/empleados/modal/create-cliente/create-clientes.component'
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { EditEmpleadoComponent } from './pages/empleados/modal/edit-empleado/edit-empleado.component';
-import { DeleteEmpleadoComponent } from './pages/empleados/modal/delete-empleado/delete-empleado.component';
+import { EditClienteComponent } from './pages/empleados/modal/edit-cliente/edit-clientes.component';
+import { DeleteClienteComponent } from './pages/empleados/modal/delete-cliente/delete-clientes.component';
 
+// export function permissionsFactory(loadPermissionsService:EmpleadosService,
+//   ngxPermissionsService:NgxPermissionsService){
+//   return()=>{
+//     return loadPermissionsService.loadPermissions()
+//       .toPromise().then((data)=>{
+//         ngxPermissionsService.loadPermissions(data)
+//       })
+//   }
+// }
 @NgModule({
   declarations: [
     AppComponent,
-    EmpleadosComponent,
-    EmpleadoComponent,
-    CreateEmpleadoComponent,
-    EditEmpleadoComponent,
-    DeleteEmpleadoComponent
+    ClientesComponent,
+    ClienteComponent,
+    CreateClienteComponent,
+    EditClienteComponent,
+    DeleteClienteComponent
   ],
   imports: [
     BrowserModule,
@@ -26,9 +35,16 @@ import { DeleteEmpleadoComponent } from './pages/empleados/modal/delete-empleado
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
+    NgbModule,
+    // NgxPermissionsModule.forRoot()
   ],
-  providers: [],
+  providers: [
+  //   {
+  //   // provide:APP_INITIALIZER,
+  //   // useFactory: permissionsFactory,
+  //   // deps:[EmpleadosService, NgxPermissionsService]
+  // }
+],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
