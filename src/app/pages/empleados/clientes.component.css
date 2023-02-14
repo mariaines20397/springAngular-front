@@ -14,3 +14,6 @@ table thead tr th {
 .dataEmpleado{
     padding-left: 25px;
 }
+.form{
+    display: flex;
+}

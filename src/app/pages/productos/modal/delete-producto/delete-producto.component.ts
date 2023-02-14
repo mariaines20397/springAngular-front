@@ -1,20 +1,20 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { ClientesService } from '../../service/clientes.service';
+import { ProductosService } from '../../service/productos.service';
 
 @Component({
-  selector: 'app-delete-clientes',
-  templateUrl: './delete-clientes.component.html',
-  styleUrls: ['./delete-clientes.component.css']
+  selector: 'app-delete-producto',
+  templateUrl: './delete-producto.component.html',
+  styleUrls: ['./delete-producto.component.css']
 })
-export class DeleteClienteComponent implements OnInit {
+export class DeleteProductoComponent {
   closeResult=''
   urlUse:string[] = []
   constructor(
     private router:Router,
     private modalService:NgbModal,
-	private clienteService:ClientesService
+	private ProductosService:ProductosService
   ){ }
   ngOnInit(){
     this.urlUse=this.router.url.split('/');
@@ -31,8 +31,8 @@ export class DeleteClienteComponent implements OnInit {
 	);
 	const id=parseInt(this.urlUse[2])
 
-    this.clienteService.deleteCliente(id).subscribe(
-      res=> this.router.navigate(['/clientes'])
+    this.ProductosService.deleteProducto(id).subscribe(
+      res=> this.router.navigate(['/productos'])
     )
 this.modalService.dismissAll();
 }
@@ -47,10 +47,7 @@ private getDismissReason(reason: any): string {
 }
 close(){
 this.modalService.dismissAll();
- this.router.navigate(['/clientes'])
+ this.router.navigate(['/productos'])
 
 }
-
-
-
 }

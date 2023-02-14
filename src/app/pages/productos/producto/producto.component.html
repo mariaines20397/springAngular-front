@@ -1,0 +1,39 @@
+<div class="card bg-dark-text-white">
+    <div class="card-header">Crear</div>
+    <div class="card-body">
+    
+        <form [formGroup]="productoForm">
+            <div class="form-group column">
+                <div class="col-sm-6">
+                    <input type="text" name="" id="" class="form-control" placeholder="Nombre del producto" formControlName="nombreProducto">
+                </div>
+                <div class="col-sm-6">
+                    <input type="number" name="" id="" class="form-control" placeholder="Precio" formControlName="precio">
+                </div>
+                <div class="col-sm-6">
+                    <!-- <input type="number" name="" id="" class="form-control" placeholder="Tipo" formControlName="tipo"> -->
+                    <select class="form-control" name="tipo" formControlName="tipo" id="">
+                        <option value="null" selected disabled>Tipo de producto</option>
+                        <option *ngFor="let tipo of tipoProducto " [value]="tipo.id">{{tipo.type}}</option>
+                    </select>
+                </div>
+                <div class="col-sm-6">
+                    <select class="form-control" name="stock" formControlName="stock" id="">
+                        <option value="null" selected disabled>¿Hay stock?</option>
+                        <option [value]="0">No</option>
+                        <option [value]="1">Sí</option>
+                    </select>                </div>
+                <div class="col-sm-6">
+                    <input type="text" name="" id="" class="form-control" placeholder="Descripción" formControlName="descripcion">
+                </div>
+            </div>
+            <div class="form-group row">
+                <div class="col-sm-6">
+                    <button class="btn btn-primary" role="button" *ngIf="urlUse[2] == 'create'" (click)="create()">Crear</button>
+                    <button class="btn btn-primary" role="button" *ngIf="urlUse[2] == 'edit'" (click)="edit()">Editar</button>
+                </div>
+            </div>
+        </form>
+    
+    </div>
+    </div>

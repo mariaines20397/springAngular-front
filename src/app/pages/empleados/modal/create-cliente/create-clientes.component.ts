@@ -16,6 +16,6 @@ export class CreateClienteComponent {
 
   close(){
     this.modalService.dismissAll()
-    this.router.navigate(['/'])
+    this.router.navigate(['/clientes'])
   }
 }

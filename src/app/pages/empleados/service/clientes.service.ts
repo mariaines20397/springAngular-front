@@ -6,7 +6,7 @@ import { Cliente } from '../model/clientes.model';
   providedIn: 'root'
 })
 export class ClientesService {
-  private urlEndPoint:string='http://localhost:9090';
+  private urlEndPoint:string='http://localhost:9090/clientes';
   // private urlEndPointPost:string='http://localhost:9090/create';
   // private httpHeaders = new HttpHeaders({'Content-Type':'application/json'})
   constructor(private http:HttpClient) { }

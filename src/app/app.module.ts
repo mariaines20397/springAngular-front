@@ -10,6 +10,12 @@ import { CreateClienteComponent } from './pages/empleados/modal/create-cliente/c
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EditClienteComponent } from './pages/empleados/modal/edit-cliente/edit-clientes.component';
 import { DeleteClienteComponent } from './pages/empleados/modal/delete-cliente/delete-clientes.component';
+import { ProductosComponent } from './pages/productos/productos.component';
+import { ProductoComponent } from './pages/productos/producto/producto.component';
+import { CreateProductoComponent } from './pages/productos/modal/create-producto/create-producto.component';
+import { DeleteProductoComponent } from './pages/productos/modal/delete-producto/delete-producto.component';
+import { EditProductoComponent } from './pages/productos/modal/edit-producto/edit-producto.component';
+import { SharedModule } from './shared/shared.module';
 
 // export function permissionsFactory(loadPermissionsService:EmpleadosService,
 //   ngxPermissionsService:NgxPermissionsService){
@@ -27,7 +33,12 @@ import { DeleteClienteComponent } from './pages/empleados/modal/delete-cliente/d
     ClienteComponent,
     CreateClienteComponent,
     EditClienteComponent,
-    DeleteClienteComponent
+    DeleteClienteComponent,
+    ProductosComponent,
+    ProductoComponent,
+    CreateProductoComponent,
+    DeleteProductoComponent,
+    EditProductoComponent    
   ],
   imports: [
     BrowserModule,
@@ -35,7 +46,7 @@ import { DeleteClienteComponent } from './pages/empleados/modal/delete-cliente/d
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule,
+    NgbModule
     // NgxPermissionsModule.forRoot()
   ],
   providers: [

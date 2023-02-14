@@ -6,10 +6,10 @@ import { ClientesComponent } from './clientes.component';
 import { NgxPermissionsModule } from 'ngx-permissions';
 
 const routes:Routes=[
-  // {path:'**', redirectTo:'/', pathMatch:'full'},
+  {path:'', component:ClientesComponent},
   {path:'create',component:ClienteComponent},
   {path:'edit/:id' , component:ClienteComponent},
-  {path:':id' , component:ClientesComponent},
+  {path:':id' , component:ClienteComponent},
 ]
 
 @NgModule({
@@ -21,6 +21,7 @@ const routes:Routes=[
     //   permissionsIsolate:true,
     //   rolesIsolate:true
     // })
-  ]
+  ],
+  exports:[RouterModule]
 })
 export class EmpleadosRoutingModule { }

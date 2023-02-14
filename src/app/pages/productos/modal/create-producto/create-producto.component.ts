@@ -3,11 +3,12 @@ import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
-  selector: 'app-edit-clientes',
-  templateUrl: './edit-clientes.component.html',
-  styleUrls: ['./edit-clientes.component.css']
+  selector: 'app-create-producto',
+  templateUrl: './create-producto.component.html',
+  styleUrls: ['./create-producto.component.css']
 })
-export class EditClienteComponent {
+export class CreateProductoComponent {
+
   constructor(
     private router:Router,
     private modalService:NgbModal
@@ -15,6 +16,6 @@ export class EditClienteComponent {
 
   close(){
     this.modalService.dismissAll()
-    this.router.navigate(['/clientes'])
+    this.router.navigate(['/productos'])
   }
 }

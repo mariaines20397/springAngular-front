@@ -1,8 +1,16 @@
 <ng-template [ngxPermissionsOnly]="'admin'"
 (permissionsAuthorized)="disableButton=false">
 </ng-template>
-<div style="margin: 20px;">
-  <button [disabled]="disableButton"  id="buttonCreate" type="button" routerLink="create">Agregar</button>
+<div class="header">
+  <nav class="navbar">
+    <div style="margin: 20px;">
+      <button [disabled]="disableButton"  id="buttonCreate" type="button" routerLink="create">Agregar</button>
+    </div>
+    <form class="form">
+      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+  </nav>
 </div>
 <div class="card border-warning mb-3" style="margin: 20px;">
     <div class="card-header">Clientes</div>
@@ -23,7 +31,8 @@
             <tr *ngFor="let data of allClientes">
                 <td class="dataEmpleado">{{data.nombreNegocio}}</td>
                 <td class="dataEmpleado">{{data.direccion}}</td>
-                <td class="dataEmpleado">{{data.tipo}}</td>
+                <td class="dataEmpleado" *ngIf="data.tipo == 0">{{'Moto'}}</td>
+                <td class="dataEmpleado" *ngIf="data.tipo == 1">{{'Auto'}}</td>
                 <td class="dataEmpleado">{{data.cantidadEncargues}}</td>
                 <td class="dataEmpleado">{{data.descripcion}}</td>
                 <td class="not-found"><img class="edit" src="../../../assets/icons/edit.svg" (click)="edit(data.id)" alt="edit"></td>

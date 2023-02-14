@@ -1,0 +1,38 @@
+<div style="margin: 20px;">
+  <button  id="buttonCreate" type="button" routerLink="create">Agregar</button>
+</div>
+<div class="card border-warning mb-3" style="margin: 20px;">
+    <div class="card-header">Productos</div>
+    <div class="card-body">
+      <h5 class="card-title">Listado de productos</h5>
+      <table class="table table-bordered table-hover">
+        <thead>
+          <tr>
+            <th>Nombre del producto</th>
+        <th>Precio</th>
+        <th>Tipo</th>
+        <th>Stock</th>
+        <th>Descripción</th>
+        <th colspan="2">Acciones</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            <tr *ngFor="let data of allProductos">
+                <td class="dataEmpleado">{{data.nombreProducto}}</td>
+                <td class="dataEmpleado">{{data.precio}}</td>
+                <td class="dataEmpleado" *ngIf="data.tipo == 0">{{'Moto'}}</td>
+                <td class="dataEmpleado" *ngIf="data.tipo == 1">{{'Auto'}}</td>
+                <td class="dataEmpleado" *ngIf="data.stock == 0">{{'No'}}</td>
+                <td class="dataEmpleado" *ngIf="data.stock == 1">{{'Sí'}}</td>
+                <td class="dataEmpleado">{{data.descripcion}}</td>
+                <td class="not-found"><img class="edit" src="../../../assets/icons/edit.svg" (click)="edit(data.id)" alt="edit"></td>
+                <td class="not-found"><img class="delete" src="../../../assets/icons/delete.svg"  (click)="redirect(data.id)" alt="delete"></td>
+                
+            </tr>
+            <tr *ngIf="allProductosArray.length==0">
+                <td class="not-found" colspan="5">Lo sentimos, no hay productos para mostrar.</td>
+            </tr>
+        </tbody>
+      </table>
+    </div>
+   

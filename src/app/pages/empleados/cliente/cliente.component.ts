@@ -22,6 +22,16 @@ export class ClienteComponent implements OnInit{
     cantidadEncargues: new FormControl(),
     descripcion: new FormControl(),
   })
+  tipoComercio=[
+    {
+      id:0,
+      type:'Moto'
+    },
+    {
+      id:1,
+      type:'Auto'
+    }
+  ]
 
   constructor(
     private formBuilder:FormBuilder, 
@@ -33,8 +43,8 @@ export class ClienteComponent implements OnInit{
 
   ngOnInit(): void {    
     this.urlUse=this.router.url.split('/')
-    if (this.urlUse[1]=='edit') {
-      const id=parseInt(this.urlUse[2])
+    if (this.urlUse[2]=='edit') {
+      const id=parseInt(this.urlUse[3])
       this.ClienteService.getClienteById(id).subscribe(cliente=>        
        this.clienteForm.setValue({
         nombreNegocio:cliente.nombreNegocio,
@@ -64,7 +74,7 @@ export class ClienteComponent implements OnInit{
   }
 
   edit(){
-    const id=parseInt(this.urlUse[2])
+    const id=parseInt(this.urlUse[3])
 
     const Cliente:Cliente={
       nombreNegocio:this.clienteForm.get('nombreNegocio')?.value,

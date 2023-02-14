@@ -28,21 +28,19 @@ export class ClientesComponent implements OnInit{
     })
   const perm=['ADMIN','EMPLEADO'];
   // this.permissionService.loadPermissions(perm);
-  console.log(this.disableButton);
   
 }
 
 edit(id:any){
-this.router.navigate(['edit/'+id])
+this.router.navigate(['/clientes/edit/'+id])
 }
 create(){
   
-  this.router.navigate(['/create'])
-  console.log('click');
+  this.router.navigate(['/clientes/create']);
   
   }
   redirect(id:any){
-  this.router.navigate(['/'+id])
+  this.router.navigate(['/clientes'+id])
 
   this.modalService.open(DeleteClienteComponent,{size:'md'})
     
