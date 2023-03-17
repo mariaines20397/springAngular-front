@@ -1,0 +1,61 @@
+.signIn{
+    /* border: 2px solid red; */
+    display: flex;
+}
+.imgSignIn img{
+    width: 50vw;
+    height: 100vh;
+}
+.formSignIn{
+    width: 50vw;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.divForm{
+    /* border: 2px solid blue; */
+    width: 50%;
+    height: 30%;
+}
+.formulario{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.form-group input{
+    border: 1px solid black;
+    margin-top: 20px;
+
+}
+.formulario h4{
+text-align: center;
+}
+.formulario button{
+    margin-top: 20px;
+    border: 1px solid rgb(185, 114, 88);
+    background: rgb(185, 114, 88);
+    color: black;
+}
+
+.formulario button:hover{
+    border: 1px solid rgb(135, 76, 54);
+    background: rgb(135, 76, 54);
+    color: white;
+}
+.containerRegistrar{
+    display: flex;
+}
+.registrar{
+    border: 1px solid rgb(135, 76, 54);
+    background: white;
+    width: 30%;
+    color: black;
+    margin: auto;
+    margin-top: 50px;
+}
+.registrar:hover{
+    background: rgb(135, 76, 54);;
+    color: white;
+}

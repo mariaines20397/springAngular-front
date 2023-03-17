@@ -16,6 +16,8 @@ import { CreateProductoComponent } from './pages/productos/modal/create-producto
 import { DeleteProductoComponent } from './pages/productos/modal/delete-producto/delete-producto.component';
 import { EditProductoComponent } from './pages/productos/modal/edit-producto/edit-producto.component';
 import { SharedModule } from './shared/shared.module';
+import { NgxPermissionsModule } from 'ngx-permissions';
+import { SignInComponent } from './pages/sign-in/sign-in.component';
 
 // export function permissionsFactory(loadPermissionsService:EmpleadosService,
 //   ngxPermissionsService:NgxPermissionsService){
@@ -38,7 +40,8 @@ import { SharedModule } from './shared/shared.module';
     ProductoComponent,
     CreateProductoComponent,
     DeleteProductoComponent,
-    EditProductoComponent    
+    EditProductoComponent,
+    SignInComponent    
   ],
   imports: [
     BrowserModule,
@@ -46,8 +49,8 @@ import { SharedModule } from './shared/shared.module';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
-    NgbModule
-    // NgxPermissionsModule.forRoot()
+    NgbModule,
+    NgxPermissionsModule.forRoot()
   ],
   providers: [
   //   {

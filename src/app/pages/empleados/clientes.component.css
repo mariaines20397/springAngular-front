@@ -4,6 +4,9 @@
 .delete {
     cursor: pointer;
 }
+.card-body{
+    overflow-y: scroll;
+}
 
 table thead tr th {
     text-align: center;

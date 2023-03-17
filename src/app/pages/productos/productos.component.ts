@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { NgxPermissionsService } from 'ngx-permissions';
 import { DeleteProductoComponent } from './modal/delete-producto/delete-producto.component';
 import { ProductosService } from './service/productos.service';
 
@@ -14,10 +15,11 @@ export class ProductosComponent {
   allProductosArray:string[]=[];
   disableButton:boolean=false
   closeResult=''
+
   constructor(private productoService:ProductosService,
     private router:Router,
     private modalService:NgbModal,
-    // private permissionService:NgxPermissionsService
+    private ps:NgxPermissionsService
     ){
 
   }
@@ -26,9 +28,8 @@ export class ProductosComponent {
       this.allProductos=Object.values(data)   
       this.allProductosArray=Object.keys(data)             
     })
-  const perm=['ADMIN','EMPLEADO'];
-  // this.permissionService.loadPermissions(perm);
-  
+    console.log(localStorage.getItem('permissions'));
+
 }
 
 edit(id:any){

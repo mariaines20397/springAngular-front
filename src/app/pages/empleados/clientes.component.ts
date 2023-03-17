@@ -28,7 +28,7 @@ export class ClientesComponent implements OnInit{
     })
   const perm=['ADMIN','EMPLEADO'];
   // this.permissionService.loadPermissions(perm);
-  
+  localStorage.getItem('permissions')
 }
 
 edit(id:any){

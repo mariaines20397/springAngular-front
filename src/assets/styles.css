@@ -49,3 +49,8 @@ html{
     font-size: 14px;
     background: rgb(178, 177, 177);
 }
+.card-body{
+    height: 73vh;
+    width: 100%;
+    overflow: scroll;
+}
