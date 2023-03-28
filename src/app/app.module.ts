@@ -18,6 +18,7 @@ import { EditProductoComponent } from './pages/productos/modal/edit-producto/edi
 import { SharedModule } from './shared/shared.module';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
+import { SignUpComponent } from './pages/sign-up/sign-up.component';
 
 // export function permissionsFactory(loadPermissionsService:EmpleadosService,
 //   ngxPermissionsService:NgxPermissionsService){
@@ -41,7 +42,8 @@ import { SignInComponent } from './pages/sign-in/sign-in.component';
     CreateProductoComponent,
     DeleteProductoComponent,
     EditProductoComponent,
-    SignInComponent    
+    SignInComponent,
+    SignUpComponent    
   ],
   imports: [
     BrowserModule,
