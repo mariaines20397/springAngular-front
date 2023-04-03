@@ -16,21 +16,12 @@ import { CreateProductoComponent } from './pages/productos/modal/create-producto
 import { DeleteProductoComponent } from './pages/productos/modal/delete-producto/delete-producto.component';
 import { EditProductoComponent } from './pages/productos/modal/edit-producto/edit-producto.component';
 import { SharedModule } from './shared/shared.module';
-import { NgxPermissionsModule } from 'ngx-permissions';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
-// export function permissionsFactory(loadPermissionsService:EmpleadosService,
-//   ngxPermissionsService:NgxPermissionsService){
-//   return()=>{
-//     return loadPermissionsService.loadPermissions()
-//       .toPromise().then((data)=>{
-//         ngxPermissionsService.loadPermissions(data)
-//       })
-//   }
-// }
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -55,17 +46,10 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    NgxPermissionsModule.forRoot(),
     BrowserAnimationsModule, 
     ToastrModule.forRoot()
   ],
-  providers: [
-  //   {
-  //   // provide:APP_INITIALIZER,
-  //   // useFactory: permissionsFactory,
-  //   // deps:[EmpleadosService, NgxPermissionsService]
-  // }
-],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

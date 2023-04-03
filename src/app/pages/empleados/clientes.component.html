@@ -1,10 +1,8 @@
-<!-- <ng-template [ngxPermissionsOnly]="'admin'"
-(permissionsAuthorized)="disableButton=false">
-</ng-template> -->
+
 <div class="header">
   <nav class="navbar">
     <div style="margin: 20px;">
-      <button  id="buttonCreate" type="button" *ngxPermissionsOnly="['/clientes/create']" routerLink="create">Agregar</button>
+      <button *ngIf="signInService.hasRole('ROLE_ADMIN')"  id="buttonCreate" type="button"  routerLink="create">Agregar</button>
     </div>
     <form class="form">
       <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
@@ -24,7 +22,7 @@
         <th>Tipo</th>
         <th>N° de Encargues</th>
         <th>Descripción</th>
-        <th colspan="2" *ngxPermissionsOnly="['/clientes/*']">Acciones</th>
+        <th colspan="2" *ngIf="signInService.hasRole('ROLE_ADMIN')">Acciones</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -35,8 +33,8 @@
                 <td class="dataEmpleado" *ngIf="data.tipo == 1">{{'Auto'}}</td>
                 <td class="dataEmpleado">{{data.cantidadEncargues}}</td>
                 <td class="dataEmpleado">{{data.descripcion}}</td>
-                <td class="not-found" *ngxPermissionsOnly="['/clientes/edit']"><img class="edit" src="../../../assets/icons/edit.svg" (click)="edit(data.id)" alt="edit"></td>
-                <td class="not-found" *ngxPermissionsOnly="['/clientes/*']"><img class="delete" src="../../../assets/icons/delete.svg"  (click)="redirect(data.id)" alt="delete"></td>
+                <td class="not-found" *ngIf="signInService.hasRole('ROLE_ADMIN')"><img class="edit" src="../../../assets/icons/edit.svg" (click)="edit(data.id)" alt="edit"></td>
+                <td class="not-found" *ngIf="signInService.hasRole('ROLE_ADMIN')"><img class="delete" src="../../../assets/icons/delete.svg"  (click)="redirect(data.id)" alt="delete"></td>
             </tr>
             <tr *ngIf="allClientesArray.length==0">
                 <td class="not-found" colspan="5">Lo sentimos, no hay clientes para mostrar.</td>

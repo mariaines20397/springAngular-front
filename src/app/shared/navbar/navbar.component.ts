@@ -1,5 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { SignInService } from 'src/app/pages/sign-in/service/sign-in.service';
+import Swal from 'sweetalert2';
+import { NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-navbar',
@@ -7,7 +10,10 @@ import { Router } from '@angular/router';
   styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent {
-  constructor(private router:Router,){}
+  constructor(private router:Router,public signInService:SignInService){
+    console.log(signInService.usuario);
+    
+  }
   optionsNav = [
     {
       routerLink:'/productos',
@@ -20,6 +26,14 @@ export class NavbarComponent {
   ]
 
   redirect(url:string){
-    this.router.navigate(['/'+url])
+    this.router.navigate(['/main'+url])
+  }
+
+  logout(){
+    let username=this.signInService.usuario.nombre
+    this.signInService.logout();
+    Swal.fire('Logout',username+' has cerrado sesión con éxito. ¡Gracias por tu visita!', 'success');
+    this.router.navigate([''])
+
   }
 }

@@ -8,18 +8,12 @@ import { Usuario } from '../../sign-up/model/usuario.model';
 })
 export class SignInService {
 
-  private _usuario:Usuario={
-    username:'',
-    password:'',
-    email:'',
-    nombre:'',
-    apellido:''
-  };
-  private _token!:string;
+  private _usuario!:Usuario | null;
+  private _token!:string | null;
 
   constructor(private http: HttpClient) { }
 
-  public get usuario():Usuario{
+  public get usuario():Usuario{    
     if (this._usuario != null) {
       return this._usuario;
     } else if(this._usuario == null && sessionStorage.getItem('usuario') != null){
@@ -66,7 +60,14 @@ export class SignInService {
   guardarUsuario(access_token:string){
     let payload = this.obtenerPayload(access_token);
     console.log('payload: '+ payload.user_name);
-    
+    this._usuario={
+      username:'',
+      password:'',
+      email:'',
+      nombre:'',
+      apellido:'',
+      rol:[]
+    }
     this._usuario.nombre=payload.nombre;
     this._usuario.apellido=payload.apellido;
     this._usuario.email=payload.email;
@@ -90,5 +91,18 @@ export class SignInService {
     return null;
   }
 
+  hasRole(role:string):boolean{
+    if(this.usuario.rol?.includes(role)){
+      return true;
+    }
+    return false;
+  }
+
+  logout():void{
+    this._token=null;
+    this._usuario=null;
+    sessionStorage.removeItem('token');
+    sessionStorage.removeItem('usuario');
+  }
   
 }

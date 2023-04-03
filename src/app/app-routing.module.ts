@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
 import { AuthGuard } from './core/guards/auth-guard.guard';
+import { MainGuard } from './core/guards/main-guard.guard';
 
 const routes:Routes=[
   {
@@ -11,7 +12,8 @@ const routes:Routes=[
 },
  {
   path:'main',
-  loadChildren:()=> import('./pages/main/main.module').then((m)=> m.MainModule)
+  loadChildren:()=> import('./pages/main/main.module').then((m)=> m.MainModule),
+  canActivate:[MainGuard],
  }
   ]
 

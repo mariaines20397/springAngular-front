@@ -3,6 +3,7 @@ import { ClientesService } from './service/clientes.service';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { DeleteClienteComponent } from './modal/delete-cliente/delete-clientes.component';
+import { SignInService } from '../sign-in/service/sign-in.service';
 
 @Component({
   selector: 'app-clientes',
@@ -17,7 +18,7 @@ export class ClientesComponent implements OnInit{
   constructor(private clienteService:ClientesService,
     private router:Router,
     private modalService:NgbModal,
-    // private permissionService:NgxPermissionsService
+    public signInService:SignInService
     ){
 
   }
@@ -26,30 +27,21 @@ export class ClientesComponent implements OnInit{
       this.allClientes=Object.values(data)   
       this.allClientesArray=Object.keys(data)       
     })
-  const perm=['ADMIN','EMPLEADO'];
-  // this.permissionService.loadPermissions(perm);
-  localStorage.getItem('permissions')
 }
 
 edit(id:any){
-this.router.navigate(['/clientes/edit/'+id])
+this.router.navigate(['/main/clientes/edit/'+id])
 }
 create(){
   
-  this.router.navigate(['/clientes/create']);
+  this.router.navigate(['/main/clientes/create']);
   
   }
   redirect(id:any){
-  this.router.navigate(['/clientes'+id])
+  this.router.navigate(['/main/clientes'+id])
 
   this.modalService.open(DeleteClienteComponent,{size:'md'})
     
   }
-//   disableButton(isDesabled:boolean){
-
-// if (isDesabled) {
-//   document.getElementById('buttonCreate')?.ariaDisabled
-// } 
-//   }
  
 }

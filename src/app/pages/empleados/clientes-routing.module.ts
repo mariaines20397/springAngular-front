@@ -3,13 +3,19 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { ClienteComponent } from './cliente/cliente.component';
 import { ClientesComponent } from './clientes.component';
-import { NgxPermissionsModule } from 'ngx-permissions';
+import { RoleGuard } from 'src/app/core/guards/role-guard.guard';
 
 const routes:Routes=[
-  {path:'', component:ClientesComponent},
-  {path:'create',component:ClienteComponent},
-  {path:'edit/:id' , component:ClienteComponent},
-  {path:':id' , component:ClienteComponent},
+  {path:'', 
+  component:ClientesComponent},
+  {path:'create',
+  canActivate:[RoleGuard],
+  component:ClienteComponent},
+  {path:'edit/:id' , 
+  canActivate:[RoleGuard],
+  component:ClienteComponent},
+  {path:':id' , 
+  component:ClienteComponent},
 ]
 
 @NgModule({
@@ -17,10 +23,6 @@ const routes:Routes=[
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    // NgxPermissionsModule.forChild({
-    //   permissionsIsolate:true,
-    //   rolesIsolate:true
-    // })
   ],
   exports:[RouterModule]
 })

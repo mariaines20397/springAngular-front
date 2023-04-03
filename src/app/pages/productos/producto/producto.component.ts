@@ -67,7 +67,7 @@ export class ProductoComponent {
     }
     this.ProductoService.create(Producto)
     .subscribe(
-      res=>
+      (res)=>
       this.modalService.open(CreateProductoComponent,{size:'md'})
       );
   }

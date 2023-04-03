@@ -1,8 +1,7 @@
 
 
   <div style="margin: 20px;">
-    <!-- <button type="button" class="otrobtnDev" routerLink="create">Agregar</button> -->
-    <button  *ngxPermissionsOnly="['/productos/create']" class="btnDev" type="button" routerLink="create">Agregar</button>
+    <button *ngIf="signInService.hasRole('ROLE_ADMIN')" type="button" routerLink="create">Agregar</button>
   </div>
 
 <div class="card border-warning mb-3" style="margin: 20px;">
@@ -17,7 +16,7 @@
         <th>Tipo</th>
         <th>Stock</th>
         <th>Descripción</th>
-        <th colspan="2"  *ngxPermissionsOnly="['/productos/edit']">Acciones</th>
+        <th colspan="2" *ngIf="signInService.hasRole('ROLE_ADMIN')">Acciones</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
@@ -29,8 +28,8 @@
                 <td class="dataEmpleado" *ngIf="data.stock == 0">{{'No'}}</td>
                 <td class="dataEmpleado" *ngIf="data.stock == 1">{{'Sí'}}</td>
                 <td class="dataEmpleado">{{data.descripcion}}</td>
-                <td class="not-found" *ngxPermissionsOnly="['/productos/edit']"><img class="edit" src="../../../assets/icons/edit.svg" (click)="edit(data.id)" alt="edit"></td>
-                <td class="not-found" *ngxPermissionsOnly="['/productos/*']"><img class="delete" src="../../../assets/icons/delete.svg"  (click)="redirect(data.id)" alt="delete"></td>
+                <td class="not-found" *ngIf="signInService.hasRole('ROLE_ADMIN')"><img class="edit" src="../../../assets/icons/edit.svg" (click)="edit(data.id)" alt="edit"></td>
+                <td class="not-found" *ngIf="signInService.hasRole('ROLE_ADMIN')"><img class="delete" src="../../../assets/icons/delete.svg"  (click)="redirect(data.id)" alt="delete"></td>
                 
             </tr>
             <tr *ngIf="allProductosArray.length==0">

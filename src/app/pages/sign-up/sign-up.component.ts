@@ -27,7 +27,7 @@ export class SignUpComponent {
 
   }
   back() {
-    this.router.navigate(['/sign-in'])
+    this.router.navigate([''])
   }
 
   register() {
@@ -54,7 +54,7 @@ export class SignUpComponent {
           (res) => {
             console.log(res);
             Swal.fire('Usuario creado', 'Usuario registrado con éxito en el sistema', 'success')
-            this.router.navigate(['/sign-in'])
+            this.router.navigate([''])
           },
           (error) => {
             console.error(error)
