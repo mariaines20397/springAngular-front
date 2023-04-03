@@ -4,7 +4,7 @@ import { SignUpComponent } from './sign-up.component';
 import { SignUpRoutingModule } from './sign-up-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MainModule } from '../main/main.module';
-
+import { NgbToastModule } from '@ng-bootstrap/ng-bootstrap'; 
 
 
 @NgModule({
@@ -13,7 +13,8 @@ import { MainModule } from '../main/main.module';
   ],
   imports: [
     CommonModule,
-    SignUpRoutingModule
+    SignUpRoutingModule,
+    NgbToastModule 
   ]
 })
 export class SignUpModule { }

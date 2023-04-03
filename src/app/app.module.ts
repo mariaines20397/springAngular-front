@@ -19,7 +19,9 @@ import { SharedModule } from './shared/shared.module';
 import { NgxPermissionsModule } from 'ngx-permissions';
 import { SignInComponent } from './pages/sign-in/sign-in.component';
 import { SignUpComponent } from './pages/sign-up/sign-up.component';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ToastrModule } from 'ngx-toastr';
+import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 // export function permissionsFactory(loadPermissionsService:EmpleadosService,
 //   ngxPermissionsService:NgxPermissionsService){
 //   return()=>{
@@ -43,7 +45,8 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     DeleteProductoComponent,
     EditProductoComponent,
     SignInComponent,
-    SignUpComponent    
+    SignUpComponent,
+    UsuariosComponent    
   ],
   imports: [
     BrowserModule,
@@ -52,7 +55,9 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
     FormsModule,
     ReactiveFormsModule,
     NgbModule,
-    NgxPermissionsModule.forRoot()
+    NgxPermissionsModule.forRoot(),
+    BrowserAnimationsModule, 
+    ToastrModule.forRoot()
   ],
   providers: [
   //   {

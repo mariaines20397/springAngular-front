@@ -10,7 +10,7 @@ background:black;
 
 .fondo{
 width: 40vw;
-height: 70vh;
+height: 85vh;
 background:white;
 border-radius: 5%;
 }
@@ -27,15 +27,16 @@ border-radius: 5%;
     justify-content: space-between;
     align-items: center;
 }
-.volver{
-    position: absolute;
+.redirect{
+    /* position: absolute;
     top: 10px;
-    left: 20px;
-    font-size: 20px;
-    color: white;
-
+    left: 20px; */
+    margin-top: 5px;
+    font-size: 13px;
 }
-
+#dangerTpl{
+    z-index: 1200;
+}
 .form-group {
 width: 80%;
 
@@ -43,9 +44,15 @@ width: 80%;
 
 .form-group input{
     border: 1px solid black;
-    
+    padding-top: 10px;
+    padding-bottom: 10px;
     }
-
+.form-input{
+    margin-bottom: 30px;
+}
+.form-input-username{
+    margin-bottom: 15px;
+}
 .formRegistar button{
     width: 80%;
     margin-top: 20px;

@@ -3,10 +3,12 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { SignInComponent } from './sign-in.component';
 import { SignUpComponent } from '../sign-up/sign-up.component';
+import { AuthGuard } from 'src/app/core/guards/auth-guard.guard';
 const routes: Routes=[
-  // {path:'', component:ProductosComponent},
-  {path:'sign-in',
+  {path:'', 
+  
   component:SignInComponent},
+  
   {path:'sign-up',
   component:SignUpComponent}
   ]
