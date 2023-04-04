@@ -2,10 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { CreateClienteComponent } from '../modal/create-cliente/create-clientes.component';
-import { EditClienteComponent } from '../modal/edit-cliente/edit-clientes.component';
 import { Cliente } from '../model/clientes.model';
 import { ClientesService } from '../service/clientes.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-cliente',
@@ -68,9 +67,12 @@ export class ClienteComponent implements OnInit{
     }
     this.ClienteService.create(Cliente)
     .subscribe(
-      res=>
-      this.modalService.open(CreateClienteComponent,{size:'md'})
-      );
+      (res) => {
+        Swal.fire('¡Cliente creado!', 'Se ha registrado con éxito el nuevo cliente.', 'success'),
+          this.router.navigate(['/main/clientes'])
+      },
+      (error) => { Swal.fire('Error al crear el cliente', 'Lo siento, ocurrió un error al crear el cliente', 'error') }
+    );
   }
 
   edit(){
@@ -84,7 +86,11 @@ export class ClienteComponent implements OnInit{
       descripcion:this.clienteForm.get('descripcion')?.value
     }
     this.ClienteService.putCliente(id,Cliente).subscribe(
-      res=> this.modalService.open(EditClienteComponent,{size:'md'})
+      (res) => {
+        Swal.fire('¡Cliente editado!', 'Los datos se guardaron exitosamente', 'success')
+        this.router.navigate(['/main/clientes'])
+      },
+      (error) => { Swal.fire('Error al editar el cliente', 'Lo siento, ocurrió un error al editar el cliente', 'error') }
     )
   }
 

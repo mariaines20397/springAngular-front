@@ -11,7 +11,6 @@
                     <input type="number" name="" id="" class="form-control" placeholder="Precio" formControlName="precio">
                 </div>
                 <div class="col-sm-6">
-                    <!-- <input type="number" name="" id="" class="form-control" placeholder="Tipo" formControlName="tipo"> -->
                     <select class="form-control" name="tipo" formControlName="tipo" id="">
                         <option value="null" selected disabled>Tipo de producto</option>
                         <option *ngFor="let tipo of tipoProducto " [value]="tipo.id">{{tipo.type}}</option>
