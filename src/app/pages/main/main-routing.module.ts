@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { MainComponent } from './main.component';
-import { RoleGuard } from 'src/app/core/guards/role-guard.guard';
 
 const routes:Routes=[{
   path:'',

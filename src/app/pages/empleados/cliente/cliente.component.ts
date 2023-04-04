@@ -43,9 +43,9 @@ export class ClienteComponent implements OnInit{
 
   ngOnInit(): void {    
     this.urlUse=this.router.url.split('/')
-    if (this.urlUse[2]=='edit') {
-      const id=parseInt(this.urlUse[3])
-      this.ClienteService.getClienteById(id).subscribe(cliente=>        
+    if (this.urlUse.includes('edit')) {
+      const id=parseInt(this.urlUse[4])
+      this.ClienteService.getClienteById(id).subscribe(cliente=>  
        this.clienteForm.setValue({
         nombreNegocio:cliente.nombreNegocio,
         direccion:cliente.direccion,
@@ -74,7 +74,7 @@ export class ClienteComponent implements OnInit{
   }
 
   edit(){
-    const id=parseInt(this.urlUse[3])
+    const id=parseInt(this.urlUse[4])
 
     const Cliente:Cliente={
       nombreNegocio:this.clienteForm.get('nombreNegocio')?.value,

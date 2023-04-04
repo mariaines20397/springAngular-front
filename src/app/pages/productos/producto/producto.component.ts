@@ -42,8 +42,8 @@ export class ProductoComponent {
 
   ngOnInit(): void {    
     this.urlUse=this.router.url.split('/')
-    if (this.urlUse[2]=='edit') {
-      const id=parseInt(this.urlUse[3])
+    if (this.urlUse.includes('edit') ){
+      const id=parseInt(this.urlUse[4])
       this.ProductoService.getProductoById(id).subscribe(producto=>        
        this.productoForm.setValue({
         nombreProducto:producto.nombreProducto,
@@ -73,7 +73,7 @@ export class ProductoComponent {
   }
 
   edit(){
-    const id=parseInt(this.urlUse[3])
+    const id=parseInt(this.urlUse[4])
 
     const Producto:Producto={
       nombreProducto:this.productoForm.get('nombreProducto')?.value,

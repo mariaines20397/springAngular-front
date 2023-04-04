@@ -14,15 +14,15 @@ export class RoleGuard implements CanActivate {
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    let payload = this.signInService.obtenerPayload(this.signInService.token);
-    let rol=payload.authorities
-    console.log(rol[0]);
     
-    if (rol.includes('ROLE_USER')) {        
-        Swal.fire('Acceso denegado','Lo siento, '+this.signInService.usuario.nombre+' no tienes acceso a este recurso','warning')
-        return false;
+    let rol=route.data['rol'] as string;    
+    if (this.signInService.hasRole(rol)) {        
+      return true;
+        
       }
-    return true;
+      Swal.fire('Acceso denegado','Lo siento, '+this.signInService.usuario.nombre+' no tienes acceso a este recurso','warning')
+      this.router.navigate(['/main'])
+      return false;
   }
 
   

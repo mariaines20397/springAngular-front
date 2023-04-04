@@ -18,16 +18,13 @@ export class ClientesService {
     private signInService:SignInService
     ) { }
 
-  agregarAuthorizationHeader(){
-    let token = this.signInService.token;
-    if (token != null) {
-      return this.httpHeaders.append('Authorization','Bearer '+token);
-    }
-    return this.httpHeaders;
-  }
-
   isNoAutorizado(e:any): boolean{
     if (e.status==401) {
+
+      if (this.signInService.isAuthenticated()) {
+        this.signInService.logout();
+      }
+
       this.router.navigate([''])
       return true;
     }
@@ -39,7 +36,7 @@ export class ClientesService {
     return false;
   }
   getAllClientes():Observable<Cliente>{
-    return this.http.get<Cliente>(this.urlEndPoint,{headers:this.agregarAuthorizationHeader()}).pipe(
+    return this.http.get<Cliente>(this.urlEndPoint).pipe(
       catchError(e=>{
         this.isNoAutorizado(e);
         return throwError(e);
@@ -48,7 +45,7 @@ export class ClientesService {
   }
 
   create(cliente:Cliente) :Observable<Cliente>{
-    return this.http.post<Cliente>(this.urlEndPoint+'/create',cliente,{headers:this.agregarAuthorizationHeader()}).pipe(
+    return this.http.post<Cliente>(this.urlEndPoint+'/create',cliente).pipe(
       catchError(e=>{
         this.isNoAutorizado(e);
         return throwError(e);
@@ -57,7 +54,7 @@ export class ClientesService {
   }
 
 getClienteById(id:number):Observable<Cliente>{
-    return this.http.get<Cliente>((this.urlEndPoint)+'/'+id,{headers:this.agregarAuthorizationHeader()}).pipe(
+    return this.http.get<Cliente>((this.urlEndPoint)+'/'+id).pipe(
       catchError(e=>{
         this.isNoAutorizado(e);
         return throwError(e);
@@ -66,7 +63,7 @@ getClienteById(id:number):Observable<Cliente>{
   }
 
   putCliente(id:number,cliente:Cliente):Observable<Cliente>{
-    return this.http.put<Cliente>((this.urlEndPoint)+'/edit/'+id,cliente,{headers:this.agregarAuthorizationHeader()}).pipe(
+    return this.http.put<Cliente>((this.urlEndPoint)+'/edit/'+id,cliente).pipe(
       catchError(e=>{
         this.isNoAutorizado(e);
         return throwError(e);
@@ -75,7 +72,7 @@ getClienteById(id:number):Observable<Cliente>{
   }
 
   deleteCliente(id:number):Observable<Cliente>{
-    return this.http.delete<Cliente>((this.urlEndPoint)+'/'+id,{headers:this.agregarAuthorizationHeader()}).pipe(
+    return this.http.delete<Cliente>((this.urlEndPoint)+'/'+id).pipe(
       catchError(e=>{
         this.isNoAutorizado(e);
         return throwError(e);

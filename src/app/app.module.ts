@@ -2,7 +2,7 @@ import { APP_INITIALIZER, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HttpClientModule } from "@angular/common/http";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 import { ClientesComponent } from './pages/empleados/clientes.component';
 import { ClienteComponent } from './pages/empleados/cliente/cliente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -21,6 +21,7 @@ import { SignUpComponent } from './pages/sign-up/sign-up.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ToastrModule } from 'ngx-toastr';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
+import { HeaderInterceptor } from './core/interceptors/header.interceptor';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { UsuariosComponent } from './pages/usuarios/usuarios.component';
     BrowserAnimationsModule, 
     ToastrModule.forRoot()
   ],
-  providers: [],
+  providers: [{provide:HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

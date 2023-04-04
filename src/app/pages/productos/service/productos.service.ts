@@ -17,28 +17,25 @@ export class ProductosService {
     private router:Router,
     private signInService:SignInService
     ) { }
-    agregarAuthorizationHeader(){
-      let token = this.signInService.token;
-      if (token != null) {
-        return this.httpHeaders.append('Authorization','Bearer '+token);
-      }
-      return this.httpHeaders;
-    }
+    
   isNoAutorizado(e:any): boolean{
     if (e.status==401) {
+      if (this.signInService.isAuthenticated()) {
+        this.signInService.logout();
+      }
       this.router.navigate([''])
       return true;
     }
-    // if (e.status==403) {
-    //   Swal.fire('Acceso denegado','Lo siento, '+this.signInService.usuario.nombre+' no tienes acceso a este recurso','warning')
-    //   this.router.navigate(['/main/productos']);
-    //   return true;
-    // }
+    if (e.status==403) {
+      Swal.fire('Acceso denegado','Lo siento, '+this.signInService.usuario.nombre+' no tienes acceso a este recurso','warning')
+      this.router.navigate(['/main/productos']);
+      return true;
+    }
     return false;
   }
   getAllProductos():Observable<Producto>{
     
-    return this.http.get<Producto>(this.urlEndPoint,{headers:this.agregarAuthorizationHeader()}).pipe(
+    return this.http.get<Producto>(this.urlEndPoint).pipe(
       catchError(e=>{
         this.isNoAutorizado(e);
         return throwError(e);
@@ -47,7 +44,7 @@ export class ProductosService {
   };
 
   create(producto:Producto) :Observable<Producto>{
-    return this.http.post<Producto>(this.urlEndPoint+'/create',producto,{headers:this.agregarAuthorizationHeader()}).pipe(
+    return this.http.post<Producto>(this.urlEndPoint+'/create',producto).pipe(
       catchError(e=>{
         this.isNoAutorizado(e);
         return throwError(e);
@@ -56,7 +53,7 @@ export class ProductosService {
   };
 
 getProductoById(id:number):Observable<Producto>{
-    return this.http.get<Producto>((this.urlEndPoint)+'/'+id,{headers:this.agregarAuthorizationHeader()}).pipe(
+    return this.http.get<Producto>((this.urlEndPoint)+'/'+id).pipe(
       catchError(e=>{
         this.isNoAutorizado(e);
         return throwError(e);
@@ -65,7 +62,7 @@ getProductoById(id:number):Observable<Producto>{
   }
 
   putProducto(id:number,producto:Producto):Observable<Producto>{
-    return this.http.put<Producto>((this.urlEndPoint)+'/edit/'+id,producto,{headers:this.agregarAuthorizationHeader()}).pipe(
+    return this.http.put<Producto>((this.urlEndPoint)+'/edit/'+id,producto).pipe(
       catchError(e=>{
         this.isNoAutorizado(e);
         return throwError(e);
@@ -74,7 +71,7 @@ getProductoById(id:number):Observable<Producto>{
   }
 
   deleteProducto(id:number):Observable<Producto>{
-    return this.http.delete<Producto>((this.urlEndPoint)+'/'+id,{headers:this.agregarAuthorizationHeader()}).pipe(
+    return this.http.delete<Producto>((this.urlEndPoint)+'/'+id).pipe(
       catchError(e=>{
         this.isNoAutorizado(e);
         return throwError(e);
