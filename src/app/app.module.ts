@@ -16,6 +16,7 @@ import { ToastrModule } from 'ngx-toastr';
 import { UsuariosComponent } from './pages/usuarios/usuarios.component';
 import { HeaderInterceptor } from './core/interceptors/header.interceptor';
 import { AuthInterceptor } from './core/interceptors/auth.interceptor';
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { AuthInterceptor } from './core/interceptors/auth.interceptor';
     ToastrModule.forRoot()
   ],
   providers: [{provide:HTTP_INTERCEPTORS, useClass: HeaderInterceptor, multi:true},
-    {provide:HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true}],
+    {provide:HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi:true},
+    {provide:HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi:true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

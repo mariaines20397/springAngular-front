@@ -12,17 +12,17 @@ import Swal from 'sweetalert2';
 export class ClientesComponent implements OnInit {
   allClientes: any;
   allClientesArray: string[] = [];
-  disableButton: boolean = false
-  closeResult = ''
+  disableButton: boolean = false;
+  closeResult = '';
   constructor(private clienteService: ClientesService,
     private router: Router,
     public signInService: SignInService
-  ) {
+  ) { }
 
-  }
   ngOnInit(): void {
     this.fillTable()
   }
+
   fillTable() {
     this.clienteService.getAllClientes().subscribe(data => {
       this.allClientes = Object.values(data)
@@ -35,11 +35,11 @@ export class ClientesComponent implements OnInit {
   create() {
     this.router.navigate(['/main/clientes/create']);
   }
-  redirect(id: any) {
+  redirect(id: number) {
     this.clienteService.getClienteById(id).subscribe(cliente => {
       Swal.fire({
-        title: 'Estas por eliminar ' + cliente.nombreNegocio + ' del listado',
-        text: '¿Estas seguro que quieres eliminar a este cliente?',
+        title: 'Estas por eliminar ' + cliente.nombreNegocio + ' del listado de clientes',
+        text: '¿Estas seguro que quieres eliminarlo?',
         showDenyButton: true,
         confirmButtonText: 'Si, eliminar',
         denyButtonText: 'No'
@@ -47,11 +47,8 @@ export class ClientesComponent implements OnInit {
         if (result.isConfirmed) {
           this.clienteService.deleteCliente(id).subscribe(
             (res) => {
-              Swal.fire('Cliente eliminado!', 'El cliente se eliminó con éxito', 'success')
               this.fillTable();
-            },
-            (error) => {
-              Swal.fire('Error al eliminar al cliente', 'Lo siento, hubo un error al eliminar el cliente', 'error')
+              Swal.fire('Cliente ' + cliente.nombreNegocio + ' eliminado', res.mensaje, 'success');
             }
           )
         } else if (result.isDenied) {

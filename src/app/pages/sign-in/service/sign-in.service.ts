@@ -10,7 +10,8 @@ export class SignInService {
 
   private _usuario!:Usuario | null;
   private _token!:string | null;
-
+  errors: string[]=[];
+  
   constructor(private http: HttpClient) { }
 
   public get usuario():Usuario{    

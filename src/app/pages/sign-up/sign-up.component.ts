@@ -13,6 +13,14 @@ import { UsuariosService } from './service/usuarios.service';
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
+  usuario:Usuario={
+    id:0,
+    nombre:'',
+    apellido:'',
+    password:'',
+    username:'',
+    email:''
+  }
   registroForm: FormGroup = new FormGroup({
     nombre: new FormControl(),
     apellido: new FormControl(),

@@ -1,99 +1,70 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
-import { Router } from '@angular/router';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Cliente } from '../model/clientes.model';
 import { ClientesService } from '../service/clientes.service';
 import Swal from 'sweetalert2';
+import { SignInService } from '../../sign-in/service/sign-in.service';
 
 @Component({
   selector: 'app-cliente',
   templateUrl: './cliente.component.html',
   styleUrls: ['./cliente.component.css']
 })
-export class ClienteComponent implements OnInit{
-  urlUse:string[] = []
-  oneCliente={}
-  clienteForm:FormGroup=new FormGroup ({
-    nombreNegocio: new FormControl(),
-    direccion: new FormControl(),
-    tipo: new FormControl(),
-    cantidadEncargues: new FormControl(),
-    descripcion: new FormControl(),
-  })
-  tipoComercio=[
+export class ClienteComponent implements OnInit {
+  cliente: Cliente = {
+    id: 0,
+    nombreNegocio: '',
+    tipo: '',
+    direccion: '',
+    descripcion: '',
+    cantidadEncargues: 0
+  }
+  tipoComercio = [
     {
-      id:0,
-      type:'Moto'
+      id: 0,
+      type: 'Moto'
     },
     {
-      id:1,
-      type:'Auto'
+      id: 1,
+      type: 'Auto'
     }
   ]
 
   constructor(
-    private formBuilder:FormBuilder, 
-    private ClienteService:ClientesService,
-    private router:Router,
-    private modalService:NgbModal){
+    private ClienteService: ClientesService,
+    public router: Router,
+    private activatedRoute: ActivatedRoute,
+    public signInService: SignInService) { }
 
-  }
 
-  ngOnInit(): void {    
-    this.urlUse=this.router.url.split('/')
-    if (this.urlUse.includes('edit')) {
-      const id=parseInt(this.urlUse[4])
-      this.ClienteService.getClienteById(id).subscribe(cliente=>  
-       this.clienteForm.setValue({
-        nombreNegocio:cliente.nombreNegocio,
-        direccion:cliente.direccion,
-        tipo:cliente.tipo,
-        cantidadEncargues:cliente.cantidadEncargues,
-        descripcion:cliente.descripcion,
-       })
-       
-      )
+  ngOnInit(): void {
+    if (this.router.url.includes('edit')) {
+      this.activatedRoute.paramMap.subscribe(params => {
+        let id = params.get('id');
+        if (id) {
+          this.ClienteService.getClienteById(id)
+            .subscribe(cliente => this.cliente = cliente)
+        }
+      })
     }
   }
 
-  create(){
-    const Cliente:Cliente={
-      nombreNegocio:this.clienteForm.get('nombreNegocio')?.value,
-      direccion: this.clienteForm.get('direccion')?.value,
-      tipo:this.clienteForm.get('tipo')?.value,
-      cantidadEncargues:this.clienteForm.get('cantidadEncargues')?.value,
-      descripcion:this.clienteForm.get('descripcion')?.value
-    }
-    this.ClienteService.create(Cliente)
-    .subscribe(
+  create() {
+    this.ClienteService.create(this.cliente)
+      .subscribe(
+        (res) => {
+          Swal.fire('¡Cliente ' + res.cliente.nombreNegocio + ' creado!', res.mensaje, 'success'),
+            this.router.navigate(['/main/clientes'])
+        }
+      );
+  }
+
+  edit() {
+    this.ClienteService.putCliente(this.cliente).subscribe(
       (res) => {
-        Swal.fire('¡Cliente creado!', 'Se ha registrado con éxito el nuevo cliente.', 'success'),
-          this.router.navigate(['/main/clientes'])
-      },
-      (error) => { Swal.fire('Error al crear el cliente', 'Lo siento, ocurrió un error al crear el cliente', 'error') }
-    );
-  }
-
-  edit(){
-    const id=parseInt(this.urlUse[4])
-
-    const Cliente:Cliente={
-      nombreNegocio:this.clienteForm.get('nombreNegocio')?.value,
-      direccion: this.clienteForm.get('direccion')?.value,
-      tipo:this.clienteForm.get('tipo')?.value,
-      cantidadEncargues:this.clienteForm.get('cantidadEncargues')?.value,
-      descripcion:this.clienteForm.get('descripcion')?.value
-    }
-    this.ClienteService.putCliente(id,Cliente).subscribe(
-      (res) => {
-        Swal.fire('¡Cliente editado!', 'Los datos se guardaron exitosamente', 'success')
+        Swal.fire('¡Cliente ' + res.cliente.nombreNegocio + ' editado!', res.mensaje, 'success')
         this.router.navigate(['/main/clientes'])
-      },
-      (error) => { Swal.fire('Error al editar el cliente', 'Lo siento, ocurrió un error al editar el cliente', 'error') }
+      }
     )
   }
-
-  
-
 }

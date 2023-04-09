@@ -5,10 +5,10 @@
 
 <div class="formSignIn">
     <div class="divForm">
-    <form class="formulario">
+    <form class="formulario" #signInForm="ngForm">
         <h4>Inicio de sesión</h4>
         <div class="form-group">
-          <input type="text"  [(ngModel)]="usuario.username" name="username" placeholder="Nombre de usuario" class="form-control" required autofocus>
+          <input type="text"  [(ngModel)]="usuario.username" name="username" placeholder="Nombre de usuario" class="form-control" required autofocus >
           <small class="form-text text-muted ">El nombre de usuario debe ser válido.</small>
         </div>
         <div class="form-group">
@@ -17,7 +17,7 @@
 
         </div>
         
-        <button type="submit" class="btn btn-primary" (click)="login()">Ingresar</button>
+        <button type="submit" class="btn btn-primary" (click)="login()" [disabled]="!signInForm.form.valid">Ingresar</button>
       </form>
 
       <div class="containerRegistrar">

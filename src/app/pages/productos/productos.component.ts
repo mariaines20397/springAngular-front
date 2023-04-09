@@ -1,4 +1,4 @@
-import { Component, Input, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductosService } from './service/productos.service';
 import { SignInService } from '../sign-in/service/sign-in.service';
@@ -34,11 +34,11 @@ export class ProductosComponent {
   create() {
     this.router.navigate(['/main/productos/create']);
   }
-  redirect(id: any) {
+  redirect(id: number) {
     this.productoService.getProductoById(id).subscribe(producto => {
       Swal.fire({
-        title: 'Estas por eliminar ' + producto.nombreProducto + ' del listado',
-        text: '¿Estas seguro que quieres eliminar este producto?',
+        title: 'Estas por eliminar ' + producto.nombreProducto + ' del listado de productos',
+        text: '¿Estas seguro que quieres eliminarlo?',
         showDenyButton: true,
         confirmButtonText: 'Si, eliminar',
         denyButtonText: 'No'
@@ -46,11 +46,8 @@ export class ProductosComponent {
         if (result.isConfirmed) {
           this.productoService.deleteProducto(id).subscribe(
             (res) => {
-              Swal.fire('¡Producto eliminado!', 'El producto se eliminó con éxito', 'success')
               this.fillTable();
-            },
-            (error) => {
-              Swal.fire('Error al eliminar producto', 'Lo siento, hubo un error al eliminar el producto', 'error')
+              Swal.fire('Producto ' + producto.nombreProducto + ' eliminado', res.mensaje, 'success');
             }
           )
         } else if (result.isDenied) {
